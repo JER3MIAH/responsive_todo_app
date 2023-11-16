@@ -6,27 +6,34 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      textBaseline: TextBaseline.alphabetic,
       children: [
-        BlueBox(),
-        Expanded(child: BlueBox()),
-        BlueBox(),
+        Text(
+          'Hey!',
+          style: TextStyle(
+            fontSize: 30,
+            fontFamily: 'Futura',
+            color: Colors.blue,
+          ),
+        ),
+        Text(
+          'Hey!',
+          style: TextStyle(
+            fontSize: 50,
+            fontFamily: 'Futura',
+            color: Colors.green,
+          ),
+        ),
+        Text(
+          'Hey!',
+          style: TextStyle(
+            fontSize: 40,
+            fontFamily: 'Futura',
+            color: Colors.red,
+          ),
+        ),
       ],
-    );
-  }
-}
-
-class BlueBox extends StatelessWidget {
-  const BlueBox({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.blue,
-        border: Border.all(),
-      ),
     );
   }
 }
