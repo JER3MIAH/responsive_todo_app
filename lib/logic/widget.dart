@@ -8,16 +8,8 @@ class MyWidget extends StatelessWidget {
     return const Row(
       children: [
         BlueBox(),
-        Flexible(
-          fit: FlexFit.tight,
-          flex: 1,
-          child: BlueBox(),
-        ),
-        Flexible(
-          fit: FlexFit.tight,
-          flex: 1,
-          child: BlueBox(),
-        ),
+        Expanded(child: BlueBox()),
+        BlueBox(),
       ],
     );
   }

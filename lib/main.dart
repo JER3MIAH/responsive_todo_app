@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'logic/widget.dart';
 
 void main() {
