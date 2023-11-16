@@ -39,11 +39,11 @@ dependencies:
   flutter_bloc: ^8.1.3
   hydrated_bloc: ^9.1.2
   test: ^1.24.3
-  bloc_test: ^9.1.4
   lottie: ^2.6.0
   equatable: ^2.0.5
   path: ^1.8.3
   flutter_hooks: ^0.20.3
+  flutter_riverpod: ^2.4.6
 
 dev_dependencies:
   flutter_test:
