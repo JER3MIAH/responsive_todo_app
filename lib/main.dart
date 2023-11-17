@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'logic/widget.dart';
+import 'UI/widget.dart';
 
 void main() {
   runApp(const MyApp());
