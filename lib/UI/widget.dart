@@ -11,6 +11,7 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
+  double opacity = 0;
   onIncrement() {
     context.read<CounterBloc>().add(CounterIncrementEvent());
   }
@@ -30,12 +31,23 @@ class _MyWidgetState extends State<MyWidget> {
               children: [
                 Text('$state', style: const TextStyle(fontSize: 30)),
                 const SizedBox(height: 30),
+                TextButton(
+                    onPressed: () {
+                      setState(() {
+                        opacity = opacity == 0 ? 1 : 0;
+                      });
+                    },
+                    child: const Text('Animate')),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FloatingActionButton.large(
-                      onPressed: onIncrement,
-                      child: const Text("Add"),
+                    AnimatedOpacity(
+                      opacity: opacity,
+                      duration: const Duration(seconds: 2),
+                      child: FloatingActionButton.large(
+                        onPressed: onIncrement,
+                        child: const Text("Add"),
+                      ),
                     ),
                     FloatingActionButton.large(
                       onPressed: onDecrement,

@@ -15,7 +15,8 @@ class CounterBloc extends Bloc<CounterEvent, int> {
     on<CounterDecrementEvent>(_counterDecrement);
   }
 
-  FutureOr<void> _counterIncrement(event, emit) {
+  FutureOr<void> _counterIncrement(
+      CounterIncrementEvent event, Emitter<int> emit) {
     emit(state + 1);
   }
 
