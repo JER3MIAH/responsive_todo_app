@@ -23,7 +23,7 @@ class _MyWidgetState extends State<MyWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: BlocBuilder<CounterBloc, int>(
+        child: BlocConsumer<CounterBloc, int>(
           builder: (context, state) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -38,11 +38,20 @@ class _MyWidgetState extends State<MyWidget> {
                       child: const Text("Add"),
                     ),
                     FloatingActionButton.large(
-                        onPressed: onDecrement, child: const Text('Subtract')),
+                      onPressed: onDecrement,
+                      child: const Text('Subtract'),
+                    ),
                   ],
                 ),
               ],
             );
+          },
+          listenWhen: (previous, current) {
+            return current == 7;
+          },
+          listener: (context, state) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('5 baby!!')));
           },
         ),
       ),
