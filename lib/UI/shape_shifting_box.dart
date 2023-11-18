@@ -54,6 +54,7 @@ class _AnimatedContainerDemoState extends State<AnimatedContainerDemo> {
               height: 128,
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 900),
+                curve: Curves.easeInOutBack,
                 margin: EdgeInsets.all(margin),
                 decoration: BoxDecoration(
                   color: color,

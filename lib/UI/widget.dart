@@ -12,12 +12,28 @@ class MyWidget extends StatefulWidget {
 
 class _MyWidgetState extends State<MyWidget> {
   double opacity = 0;
+  double height = 100;
+  double width = 100;
+
   onIncrement() {
     context.read<CounterBloc>().add(CounterIncrementEvent());
   }
 
   onDecrement() {
     context.read<CounterBloc>().add(CounterDecrementEvent());
+  }
+
+  opacityFunc() {
+    setState(() {
+      opacity = opacity == 0 ? 1 : 0;
+    });
+  }
+
+  animatedContainerFunc() {
+    setState(() {
+      width = width == 100 ? 50 : 100;
+      height = height == 100 ? 50 : 100;
+    });
   }
 
   @override
@@ -31,27 +47,57 @@ class _MyWidgetState extends State<MyWidget> {
               children: [
                 Text('$state', style: const TextStyle(fontSize: 30)),
                 const SizedBox(height: 30),
-                TextButton(
-                    onPressed: () {
-                      setState(() {
-                        opacity = opacity == 0 ? 1 : 0;
-                      });
-                    },
-                    child: const Text('Animate')),
+                Row(
+                  children: [
+                    TextButton(
+                        onPressed: opacityFunc, child: const Text('Animate')),
+                    TextButton(
+                        onPressed: opacityFunc, child: const Text('Animate')),
+                    TextButton(
+                        onPressed: opacityFunc, child: const Text('Animate')),
+                    TextButton(
+                        onPressed: animatedContainerFunc,
+                        child: const Text('tap me')),
+                  ],
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AnimatedOpacity(
                       opacity: opacity,
                       duration: const Duration(seconds: 2),
-                      child: FloatingActionButton.large(
-                        onPressed: onIncrement,
-                        child: const Text("Add"),
+                      child: GestureDetector(
+                        onTap: onIncrement,
+                        child: Container(
+                          color: Colors.red,
+                          height: 100,
+                          width: 100,
+                          child: const Center(
+                            child: Text(
+                              'Add',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    FloatingActionButton.large(
-                      onPressed: onDecrement,
-                      child: const Text('Subtract'),
+                    const SizedBox(width: 10),
+                    AnimatedContainer(
+                      duration: const Duration(seconds: 3),
+                      height: height,
+                      width: width,
+                      child: GestureDetector(
+                        onTap: onIncrement,
+                        child: Container(
+                          color: Colors.red,
+                          child: const Center(
+                            child: Text(
+                              'Subtract',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
