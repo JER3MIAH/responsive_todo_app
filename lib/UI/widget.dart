@@ -82,19 +82,17 @@ class _MyWidgetState extends State<MyWidget> {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    AnimatedContainer(
-                      duration: const Duration(seconds: 3),
-                      height: height,
-                      width: width,
-                      child: GestureDetector(
-                        onTap: onIncrement,
-                        child: Container(
-                          color: Colors.red,
-                          child: const Center(
-                            child: Text(
-                              'Subtract',
-                              style: TextStyle(color: Colors.white),
-                            ),
+                    GestureDetector(
+                      onTap: onIncrement,
+                      child: AnimatedContainer(
+                        duration: const Duration(seconds: 3),
+                        height: height,
+                        width: width,
+                        color: Colors.red,
+                        child: const Center(
+                          child: Text(
+                            'Subtract',
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
