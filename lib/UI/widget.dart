@@ -1,3 +1,4 @@
+import 'package:counter_repository/counter_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_x_dart_practice/logic/bloc/counter_bloc.dart';
@@ -40,12 +41,13 @@ class _MyWidgetState extends State<MyWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: BlocConsumer<CounterBloc, int>(
+        child: BlocConsumer<CounterBloc, Counter>(
           builder: (context, state) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('$state', style: const TextStyle(fontSize: 30)),
+                Text('${state.initialValue}',
+                    style: const TextStyle(fontSize: 30)),
                 const SizedBox(height: 30),
                 Row(
                   children: [
@@ -83,7 +85,7 @@ class _MyWidgetState extends State<MyWidget> {
                     ),
                     const SizedBox(width: 10),
                     GestureDetector(
-                      onTap: onIncrement,
+                      onTap: onDecrement,
                       child: AnimatedContainer(
                         duration: const Duration(seconds: 3),
                         height: height,
