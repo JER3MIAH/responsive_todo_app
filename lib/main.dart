@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_x_dart_practice/UI/namer.dart';
+import 'package:flutter_x_dart_practice/apps/first_flutter_app/UI/views/namer.dart';
 import 'package:provider/provider.dart';
 
-import 'providers/appstate.dart';
+import 'apps/first_flutter_app/providers/appstate.dart';
 
 void main() {
   runApp(const MyApp());

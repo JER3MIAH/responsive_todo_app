@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_x_dart_practice/providers/appstate.dart';
+import 'package:flutter_x_dart_practice/apps/first_flutter_app/providers/appstate.dart';
 import 'package:provider/provider.dart';
 
 class FavouritesPage extends StatelessWidget {

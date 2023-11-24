@@ -1,9 +1,9 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_x_dart_practice/UI/favourites.dart';
+import 'package:flutter_x_dart_practice/apps/first_flutter_app/UI/views/favourites.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/appstate.dart';
+import '../../providers/appstate.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
