@@ -1,9 +1,6 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_x_dart_practice/apps/first_flutter_app/UI/pages/favourites.dart';
-import 'package:provider/provider.dart';
-
-import '../../providers/appstate.dart';
+import 'generator_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -17,6 +14,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //* ----------------------------------------
     Widget page;
     switch (_selectedIndex) {
       case 0:
@@ -28,6 +26,16 @@ class _MyHomePageState extends State<MyHomePage> {
       default:
         throw UnimplementedError('no widget for $_selectedIndex');
     }
+    var mainPage = Expanded(
+      child: Container(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          child: page,
+        ),
+      ),
+    );
+    //* ----------------------------------------
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth >= 700) {
         return Scaffold(
@@ -54,12 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
               ),
-              Expanded(
-                child: Container(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  child: page,
-                ),
-              ),
+              mainPage,
             ],
           ),
         );
@@ -67,12 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return Scaffold(
           body: Column(
             children: [
-              Expanded(
-                child: Container(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  child: page,
-                ),
-              ),
+              mainPage,
               SafeArea(
                 child: BottomNavigationBar(
                   items: const [
@@ -98,79 +96,5 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       }
     });
-  }
-}
-
-class GeneratorPage extends StatelessWidget {
-  const GeneratorPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-    var pair = appState.current;
-
-    IconData icon;
-    if (appState.favorites.contains(pair)) {
-      icon = Icons.favorite;
-    } else {
-      icon = Icons.favorite_border;
-    }
-
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          BigCard(pair: pair),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ElevatedButton.icon(
-                onPressed: () {
-                  appState.toggleFavorite();
-                },
-                icon: Icon(icon),
-                label: const Text('Like'),
-              ),
-              const SizedBox(width: 10),
-              ElevatedButton(
-                onPressed: () {
-                  appState.getNext();
-                },
-                child: const Text('Next'),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class BigCard extends StatelessWidget {
-  const BigCard({
-    super.key,
-    required this.pair,
-  });
-
-  final WordPair pair;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final style = theme.textTheme.displayMedium!.copyWith(
-      color: Colors.white,
-    );
-    return Card(
-      color: theme.colorScheme.primary,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Text(
-          pair.asLowerCase,
-          style: style,
-          semanticsLabel: "${pair.first} ${pair.second}",
-        ),
-      ),
-    );
   }
 }
