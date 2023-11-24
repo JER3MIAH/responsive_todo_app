@@ -1,8 +1,5 @@
-import 'package:counter_repository/counter_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_x_dart_practice/logic/bloc/counter_bloc.dart';
-import 'package:flutter_x_dart_practice/logic/bloc/counter_event.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
@@ -12,106 +9,34 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
-  double opacity = 0;
-  double height = 100;
-  double width = 100;
-
-  onIncrement() {
-    context.read<CounterBloc>().add(CounterIncrementEvent());
-  }
-
-  onDecrement() {
-    context.read<CounterBloc>().add(CounterDecrementEvent());
-  }
-
-  opacityFunc() {
-    setState(() {
-      opacity = opacity == 0 ? 1 : 0;
-    });
-  }
-
-  animatedContainerFunc() {
-    setState(() {
-      width = width == 100 ? 50 : 100;
-      height = height == 100 ? 50 : 100;
-    });
-  }
+  final CalendarFormat _calendarFormat = CalendarFormat.month;
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: BlocConsumer<CounterBloc, Counter>(
-          builder: (context, state) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('${state.initialValue}',
-                    style: const TextStyle(fontSize: 30)),
-                const SizedBox(height: 30),
-                Row(
-                  children: [
-                    TextButton(
-                        onPressed: opacityFunc, child: const Text('Animate')),
-                    TextButton(
-                        onPressed: opacityFunc, child: const Text('Animate')),
-                    TextButton(
-                        onPressed: opacityFunc, child: const Text('Animate')),
-                    TextButton(
-                        onPressed: animatedContainerFunc,
-                        child: const Text('tap me')),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AnimatedOpacity(
-                      opacity: opacity,
-                      duration: const Duration(seconds: 2),
-                      child: GestureDetector(
-                        onTap: onIncrement,
-                        child: Container(
-                          color: Colors.red,
-                          height: 100,
-                          width: 100,
-                          child: const Center(
-                            child: Text(
-                              'Add',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: onDecrement,
-                      child: AnimatedContainer(
-                        duration: const Duration(seconds: 3),
-                        height: height,
-                        width: width,
-                        color: Colors.red,
-                        child: const Center(
-                          child: Text(
-                            'Subtract',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          },
-          listenWhen: (previous, current) {
-            return current == 7;
-          },
-          listener: (context, state) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('5 baby!!')));
-          },
-        ),
+      appBar: AppBar(
+        title: const Text("Table Calender"),
+      ),
+      body: ListView(
+        children: [
+          TableCalendar(
+            focusedDay: _focusedDay,
+            firstDay: DateTime.utc(2015, 9, 20),
+            lastDay: DateTime.timestamp(),
+            calendarFormat: _calendarFormat,
+            selectedDayPredicate: (day) {
+              return isSameDay(_selectedDay, day);
+            },
+            onDaySelected: (selectedDay, focusedDay) {
+              setState(() {
+                _selectedDay = selectedDay;
+                _focusedDay = focusedDay; // update `_focusedDay` here as well
+              });
+            },
+          ),
+        ],
       ),
     );
   }

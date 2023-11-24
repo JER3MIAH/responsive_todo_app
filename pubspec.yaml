@@ -46,6 +46,7 @@ dependencies:
 
   counter_repository:
     path: packages/counter_repository
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:
