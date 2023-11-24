@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_x_dart_practice/apps/first_flutter_app/UI/views/namer.dart';
+import 'package:flutter_x_dart_practice/apps/first_flutter_app/UI/pages/home_view.dart';
 import 'package:provider/provider.dart';
 
 import 'apps/first_flutter_app/providers/appstate.dart';
