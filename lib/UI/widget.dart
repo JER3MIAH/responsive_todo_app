@@ -9,7 +9,7 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
-  final CalendarFormat _calendarFormat = CalendarFormat.month;
+  CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
 
@@ -35,6 +35,21 @@ class _MyWidgetState extends State<MyWidget> {
                 _focusedDay = focusedDay; // update `_focusedDay` here as well
               });
             },
+            onFormatChanged: (format) {
+              if (_calendarFormat != format) {
+                setState(() {
+                  _calendarFormat = format;
+                });
+              }
+            },
+            onPageChanged: (focusedDay) {
+              // No need to call `setState()` here
+              _focusedDay = focusedDay;
+            },
+            // headerVisible: false,
+            // eventLoader: (day) {
+            //   return _getEventsForDay(day);
+            // },
           ),
         ],
       ),
