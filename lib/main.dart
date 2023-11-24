@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_x_dart_practice/UI/widget.dart';
+import 'package:flutter_x_dart_practice/UI/namer.dart';
+import 'package:provider/provider.dart';
+
+import 'providers/appstate.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +13,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: const MyWidget());
+    return ChangeNotifierProvider(
+      create: (context) => MyAppState(),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: const MyHomePage()),
+    );
   }
 }
