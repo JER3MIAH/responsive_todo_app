@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_x_dart_practice/apps/first_flutter_app/UI/pages/home_view.dart';
-import 'package:provider/provider.dart';
-
-import 'apps/first_flutter_app/providers/appstate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_x_dart_practice/apps/dummy_folder/bloc/counter_bloc.dart';
+import 'package:flutter_x_dart_practice/apps/dummy_folder/bloc_practice.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +12,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
+    return BlocProvider(
+      create: (context) => CounterBloc(),
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const MyHomePage()),
+          home: const BlocPractice()),
     );
   }
 }
