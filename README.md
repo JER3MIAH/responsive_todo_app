@@ -22,6 +22,7 @@ A fully responsive todo app
 - Dart
 - Riverpod for state management
 - Hive (local storage)
+- Layout builder for responsiveness
 
 ### Features
 
