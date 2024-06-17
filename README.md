@@ -13,6 +13,9 @@ A fully responsive todo app
 
 <img src="./assets/screenshots/mobile-design-light.jpg" width="200" alt="todo section" />  <img src="./assets/screenshots/mobile-design-dark.jpg" width="200" alt="notes section" /> 
 
+<img src="./assets/screenshots/desktop-design-light.jpg" width="500" alt="todo section" />
+<img src="./assets/screenshots/desktop-design-dark.jpg" width="500" alt="notes section" /> 
+
 ### Built with
 
 - Flutter
