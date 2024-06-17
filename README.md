@@ -4,14 +4,14 @@ A fully responsive todo app
 
 ## Table of contents
 
-- [Screenshot](#screenshot)
+- [Screenshot](#screenshots)
 - [Built with](#built-with)
 - [Features](#features)
 
 
-### Screenshot
+### Screenshots
 
-<img src="./assets/screenshots/mobile-design-light.jpg" width="200" alt="todo section" />    <img src="./assets/screenshots/mobile-design-dark.jpg" width="200" alt="notes section" /> 
+<img src="./assets/screenshots/mobile-design-light.jpg" width="200" alt="todo section" />  <img src="./assets/screenshots/mobile-design-dark.jpg" width="200" alt="notes section" /> 
 
 <img src="./assets/screenshots/desktop-design-light.jpg" width="500" alt="todo section" />
 <img src="./assets/screenshots/desktop-design-dark.jpg" width="500" alt="notes section" /> 
